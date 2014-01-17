@@ -1,5 +1,4 @@
 sites
 .vagrant
 files/*
-chef/databags/*.json
 .DS_Store
