@@ -7,7 +7,7 @@ run_list(
 
   "recipe[app::sites]",
   "recipe[app::drupal]",
-  "recipe[drush]"
+  "recipe[drush]",
 
-  #{}"recipe[mailcatcher]"
+  "recipe[mailcatcher]"
 )

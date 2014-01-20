@@ -13,7 +13,7 @@ end
 
 # The --http-ip param enables us to use localhost and port forwarding from the host
 execute "mailcatcher" do
-  command "mailcatcher --http-ip `hostname -I`"
+  command "mailcatcher --http-ip '0.0.0.0'"
 end
 
 
