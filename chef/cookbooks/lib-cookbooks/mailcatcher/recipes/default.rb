@@ -14,6 +14,16 @@ end
 # The --http-ip param enables us to use localhost and port forwarding from the host
 execute "mailcatcher" do
   command "mailcatcher --http-ip '0.0.0.0'"
+  not_if "ps -Al | grep mailcatcher"
+end
+
+bash "mailcatcher_on_start" do
+  user "root"
+    cwd "/tmp"
+    code <<-EOT
+       echo "mailcatcher --http-ip '0.0.0.0'" >> /etc/rc.local
+    EOT
+    not_if "cat /etc/rc.local | grep mailcatcher"
 end
 
 
