@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   # sync the folder
-  config.vm.synced_folder "./sites", www_root, :nfs => true
+  config.vm.synced_folder "./webroot", www_root, :nfs => true
 
   config.vm.provision :chef_solo do |chef|
 

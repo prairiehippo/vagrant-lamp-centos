@@ -8,6 +8,7 @@ run_list(
   "recipe[app::sites]",
   "recipe[app::drupal]",
   "recipe[drush]",
-
+  "recipe[grunt_cookbook::install_grunt_prereq]",
+  "recipe[grunt_cookbook::install_grunt_cli]",
   "recipe[mailcatcher]"
 )
