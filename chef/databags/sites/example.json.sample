@@ -1,0 +1,6 @@
+{
+	"id": "example",
+  "hostname": "example.dev",
+  "database_name": "example",
+  "port": 80
+}
