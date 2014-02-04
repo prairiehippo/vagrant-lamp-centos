@@ -29,3 +29,31 @@ end
 service 'apache2' do
   action :restart
 end
+
+#add custom aliases for the vagrant user
+template "/home/vagrant/.bashrc" do
+  source "bashrc.erb"
+  mode 0540
+  owner "vagrant"
+  group "vagrant"
+end
+
+group "www-data" do
+  action :create
+  members "apache,vagrant"
+  append false
+end
+
+group "admin" do
+  action :modify
+  members "vagrant"
+  append false
+end
+
+#add custom sudoers file
+template "/etc/sudoers" do
+  source "sudoers.erb"
+  mode 0440
+  owner "root"
+  group "root"
+end
