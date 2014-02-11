@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # using standard virtual box file sharing.
   config.vm.network :private_network, ip: "33.33.33.20"
   config.ssh.forward_agent = true
+  config.vm.network "forwarded_port", guest: 80, host: 8000
 
   # sync the folder
   config.vm.synced_folder "./webroot", www_root, :nfs => true
@@ -56,6 +57,69 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       :php => {
         :memory_limit => '256M'
+      },
+
+      :sites => {
+        :wpg_trunk => {
+          :id => "wpg.trunk",
+          :hostname => "wpg.trunk",
+          :database_name => "wpg.trunk",
+          :port => 80
+        },
+        :wpg_eel => {
+          :id => "wpg.eel",
+          :hostname => "wpg.eel",
+          :database_name => "wpg.eel",
+          :port => 80
+        },
+        :causes_trunk => {
+          :id => "causes.trunk",
+          :hostname => "causes.trunk",
+          :database_name => "causes.trunk",
+          :port => 80
+        },
+        :causes_eel => {
+          :id => "causes.eel",
+          :hostname => "causes.eel",
+          :database_name => "causes.eel",
+          :port => 80
+        },
+        :secure_trunk => {
+          :id => "secure.trunk",
+          :hostname => "secure.trunk",
+          :database_name => "secure.trunk",
+          :port => 80
+        },
+        :secure_eel => {
+          :id => "secure.eel",
+          :hostname => "secure.eel",
+          :database_name => "secure.eel",
+          :port => 80
+        },
+        :atb_trunk => {
+          :id => "atb.trunk",
+          :hostname => "atb.trunk",
+          :database_name => "atb.trunk",
+          :port => 80
+        },
+        :atb_eel => {
+          :id => "atb.eel",
+          :hostname => "atb.eel",
+          :database_name => "atb.eel",
+          :port => 80
+        },
+        :receipts_trunk => {
+          :id => "receipts.trunk",
+          :hostname => "receipts.trunk",
+          :database_name => "receipts.trunk",
+          :port => 80
+        },
+        :receipts_eel => {
+          :id => "receipts.eel",
+          :hostname => "receipts.eel",
+          :database_name => "receipts.eel",
+          :port => 80
+        }
       }
 
     })
