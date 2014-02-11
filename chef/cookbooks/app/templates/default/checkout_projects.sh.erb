@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -f /etc/redhat-release ];
+then
+  echo "You should use your host machine's SVN client to checkout the projects."
+  echo "Go to [vagrant-profile-dir]/webroot/ with your host machine and run this script from there."
+  exit 1;
+fi
+
+svn co https://daci.svn.cvsdude.com/siteplan/wpg wpg.trunk
+svn co https://daci.svn.cvsdude.com/siteplan/causes2 causes.trunk
+svn co https://daci.svn.cvsdude.com/siteplan/atb atb.trunk
+svn co https://daci.svn.cvsdude.com/siteplan/benevity_secure secure.trunk
+
+svn co https://daci.svn.cvsdude.com/siteplan/branches/2014-01-13/wpg_release_2014-01-13 wpg.eel
+svn co https://daci.svn.cvsdude.com/siteplan/branches/2014-01-13/causes2_release_2014-01-13 causes.eel
+svn co https://daci.svn.cvsdude.com/siteplan/branches/2014-01-13/atb_release_2014-01-13 atb.eel
+svn co https://daci.svn.cvsdude.com/siteplan/branches/2014-01-13/benevity_secure_release_2014-01-13 secure.eel
