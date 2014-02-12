@@ -1,5 +1,6 @@
 /files/
 /webroot/
 /chef/databags/sites/*.json
+/chef/databags/config/*.json
 .vagrant
 .DS_Store

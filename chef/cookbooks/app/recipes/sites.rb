@@ -11,7 +11,7 @@ def setup_site(site)
     end
 
     # create vhost config
-    web_app site['id'] do
+    web_app site['hostname'] do
       server_name site['hostname']
       server_aliases [site['hostname']]
       port site['port']

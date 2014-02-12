@@ -59,63 +59,54 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :memory_limit => '256M'
       },
 
+      #default site setup
       :sites => {
         :wpg_trunk => {
-          :id => "wpg.trunk",
           :hostname => "wpg.trunk",
           :database_name => "wpg.trunk",
           :port => 80
         },
         :wpg_eel => {
-          :id => "wpg.eel",
           :hostname => "wpg.eel",
           :database_name => "wpg.eel",
           :port => 80
         },
         :causes_trunk => {
-          :id => "causes.trunk",
           :hostname => "causes.trunk",
           :database_name => "causes.trunk",
           :port => 80
         },
         :causes_eel => {
-          :id => "causes.eel",
           :hostname => "causes.eel",
           :database_name => "causes.eel",
           :port => 80
         },
         :secure_trunk => {
-          :id => "secure.trunk",
           :hostname => "secure.trunk",
           :database_name => "secure.trunk",
           :port => 80
         },
         :secure_eel => {
-          :id => "secure.eel",
           :hostname => "secure.eel",
           :database_name => "secure.eel",
           :port => 80
         },
         :atb_trunk => {
-          :id => "atb.trunk",
           :hostname => "atb.trunk",
           :database_name => "atb.trunk",
           :port => 80
         },
         :atb_eel => {
-          :id => "atb.eel",
           :hostname => "atb.eel",
           :database_name => "atb.eel",
           :port => 80
         },
         :receipts_trunk => {
-          :id => "receipts.trunk",
           :hostname => "receipts.trunk",
           :database_name => "receipts.trunk",
           :port => 80
         },
         :receipts_eel => {
-          :id => "receipts.eel",
           :hostname => "receipts.eel",
           :database_name => "receipts.eel",
           :port => 80
@@ -127,10 +118,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 end
-
-# sample configuration for using a public host (something accessible from outside your host machine)
-# setup the network to use public.  use the :bridge element to automatically bridge a specific ethernet adapter
-# config.vm.network :public_network, :bridge => 'en4: Thunderbolt Ethernet'
-# config.vm.network "forwarded_port", guest: 80, host: 8080 #lets you access the machine at localhost:8080
-# turn off NFS in this situation
-# config.vm.synced_folder "./sites", "/var/www", id: "vagrant-root"
