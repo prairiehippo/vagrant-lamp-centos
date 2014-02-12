@@ -35,6 +35,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.json.merge!({
       :www_root => www_root,
 
+      #default site will be installed as a vhost in a custom recipe
+      # :apache => {
+      #   :default_site_enabled => true,
+      #   :docroot_dir => www_root
+      # },
+
       :mysql => {
         :server_root_password => 'root',
         :server_repl_password => 'root',

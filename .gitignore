@@ -1,5 +1,7 @@
 /files/
-/webroot/
+/webroot/*
+!/webroot
+!/webroot/index.*
 /chef/databags/sites/*.json
 /chef/databags/config/*.json
 .vagrant

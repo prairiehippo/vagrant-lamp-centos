@@ -39,3 +39,8 @@ if node["sites"]
     setup_site(site)
   end
 end
+
+web_app '000-default' do
+  docroot node["www_root"]
+  template "default_vhost.conf.erb"
+end
