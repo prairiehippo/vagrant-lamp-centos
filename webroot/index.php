@@ -17,12 +17,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>WPG Development Environment</title>
 	<style>
+		body {
+			margin-top: 100px;
+			background-color: #e3e3e3;
+		}
+		.page-wrapper{
+			width: 800px;
+			margin: auto;
+			padding: 50px;
+			background-color: #ffffff;
+			border-radius: 8px;
+		}
 	</style>
 </head>
 
 <body>
+<div class="page-wrapper">
 
 	<header>
+		<marquee><strong>WPG Development Environment</strong></marquee>
 	</header>
 
 	<section>
@@ -34,7 +47,7 @@
 	</section>
 
 	<footer></footer>
-
+</div>
 </body>
 
 </html>
