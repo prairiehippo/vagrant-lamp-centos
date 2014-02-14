@@ -35,12 +35,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.json.merge!({
       :www_root => www_root,
 
-      #default site will be installed as a vhost in a custom recipe
-      # :apache => {
-      #   :default_site_enabled => true,
-      #   :docroot_dir => www_root
-      # },
-
       :mysql => {
         :server_root_password => 'root',
         :server_repl_password => 'root',
@@ -56,6 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         }
       },
 
+      :composer => {
+        :install_globally => true,
+      },
+
       :drush => {
         :install_method => 'pear',
         :version => '6.0.0'
@@ -63,6 +61,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       :php => {
         :memory_limit => '256M'
+      },
+
+
+      :nodejs => {
+        :install_method => 'package'
       },
 
       #default site setup

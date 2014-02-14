@@ -1,5 +1,5 @@
 # sets up the requirements for running Drupal
-include_recipe "drush"
+#include_recipe "drush"
 
 package "php-xml" do
 	action :install
