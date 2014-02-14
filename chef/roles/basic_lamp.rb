@@ -4,10 +4,8 @@ run_list(
   "role[apache2_webserver]",
   "role[mysql_server]",
   "role[php]",
-
   "recipe[app::sites]",
   "recipe[app::drupal]",
-  "recipe[drush]",
   "recipe[composer]",
   "recipe[nodejs]",
   "recipe[grunt_cookbook::install_grunt_prereq]",

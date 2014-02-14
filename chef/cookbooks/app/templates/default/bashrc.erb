@@ -7,5 +7,10 @@ fi
 
 # User specific aliases and functions
 
+export PATH="/etc/composer/vendor/bin:$PATH"
+
 alias drush='sudo -u apache drush'
-alias drushme=/usr/bin/drush
+alias drushme=/etc/composer/vendor/bin/drush
+alias ll='ls -al'
+alias ..='cd ..'
+alias ...='cd ../..'

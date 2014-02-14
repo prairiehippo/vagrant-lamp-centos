@@ -51,18 +51,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       },
 
       :composer => {
-        :install_globally => true,
-      },
-
-      :drush => {
-        :install_method => 'pear',
-        :version => '6.0.0'
+        :global_bin_dir => '/etc/composer',
+        :owner => 'root',
+        :group => 'admin'
       },
 
       :php => {
         :memory_limit => '256M'
       },
-
 
       :nodejs => {
         :install_method => 'package'

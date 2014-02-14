@@ -1,5 +1,11 @@
 # sets up the requirements for running Drupal
-#include_recipe "drush"
+
+directory "/etc/composer" do
+  owner "root"
+  group "root"
+  mode 00775
+  action :create
+end
 
 package "php-xml" do
 	action :install
@@ -93,4 +99,21 @@ template "/www/install_spark_eel.sh" do
   variables( :my_static_ip => data['my_static_ip'] )
   source "install_spark_eel.sh.erb"
   mode 0755
+end
+
+directory "/opt/drush" do
+  owner "root"
+  group "root"
+  mode 00775
+  action :create
+end
+
+git '/opt/drush' do
+  repository "https://github.com/drush-ops/drush.git"
+  reference '6.2.0'
+  action :sync
+end
+
+link "/usr/bin/drush" do
+  to "/opt/drush/drush"
 end
