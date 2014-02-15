@@ -102,8 +102,8 @@ template "/www/install_spark_eel.sh" do
 end
 
 directory "/opt/drush" do
-  owner "root"
-  group "root"
+  owner "vagrant"
+  group "admin"
   mode 00775
   action :create
 end
@@ -111,6 +111,8 @@ end
 git '/opt/drush' do
   repository "https://github.com/drush-ops/drush.git"
   reference '6.2.0'
+  user 'vagrant'
+  group 'admin'
   action :sync
 end
 
