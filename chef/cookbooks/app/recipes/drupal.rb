@@ -73,31 +73,38 @@ end
 #read in configuration for this instance
 data = data_bag_item( 'config', 'config' )
 
-#create spark trunk configuration
-template "/etc/wpg-trunk.config" do
-  variables( :my_static_ip => data['my_static_ip'], :my_name => data['my_name'] )
-  source "wpg-trunk.config.erb"
-  mode 0444
-end
+# #create spark trunk configuration
+# template "/etc/wpg-trunk.config" do
+#   variables( :my_static_ip => data['my_static_ip'], :my_name => data['my_name'] )
+#   source "wpg-trunk.config.erb"
+#   mode 0444
+# end
 
-#create spark eel configuration
-template "/etc/wpg-eel.config" do
-  variables( :my_static_ip => data['my_static_ip'], :my_name => data['my_name'] )
-  source "wpg-eel.config.erb"
-  mode 0444
-end
+# #create spark eel configuration
+# template "/etc/wpg-eel.config" do
+#   variables( :my_static_ip => data['my_static_ip'], :my_name => data['my_name'] )
+#   source "wpg-eel.config.erb"
+#   mode 0444
+# end
+
+# #create spark trunk installation utility script
+# template "/www/install_spark_trunk.sh" do
+#   variables( :my_static_ip => data['my_static_ip'] )
+#   source "install_spark_trunk.sh.erb"
+#   mode 0755
+# end
+
+# #create spark eel installation utility script
+# template "/www/install_spark_eel.sh" do
+#   variables( :my_static_ip => data['my_static_ip'] )
+#   source "install_spark_eel.sh.erb"
+#   mode 0755
+# end
 
 #create spark trunk installation utility script
-template "/www/install_spark_trunk.sh" do
-  variables( :my_static_ip => data['my_static_ip'] )
-  source "install_spark_trunk.sh.erb"
-  mode 0755
-end
-
-#create spark eel installation utility script
-template "/www/install_spark_eel.sh" do
-  variables( :my_static_ip => data['my_static_ip'] )
-  source "install_spark_eel.sh.erb"
+template "/www/install_helper.sh" do
+  variables( :my_static_ip => data['my_static_ip'], :my_name => data['my_name'] )
+  source "install_helper.sh.erb"
   mode 0755
 end
 

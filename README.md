@@ -17,7 +17,7 @@ Instructions
 - On your host machine, in the "webroot" directory you created under the vagrant profile folder, run ./checkout_projects.sh. This will download all of the project code from subversion.
 - SSH into your VM by running: vagrant ssh
 - cd /www. This is the directory that is synced to your "webroot" directory
-- run ./install_spark_trunk.sh. This will install Spark for you.
+- run ./install_helper.sh to install sites.
 
 Sample Hosts File
 =================

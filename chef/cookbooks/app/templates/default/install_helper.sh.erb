@@ -1,0 +1,139 @@
+#!/bin/sh
+
+if [ ! -f /etc/redhat-release ];
+then
+  echo "This script must be run from within your VM."
+  echo "To login to your vm, type: vagrant ssh"
+  echo "Then: /www/install_helper.sh"
+  exit 1;
+fi
+
+TRUNK_SANDBOX_IP="192.168.2.115"
+EEL_SANDBOX_IP="192.168.2.98"
+
+function install_wpg {
+  SITE=$1
+  SANDBOX_IP=$2
+  
+  if [ -d /www/${SITE}/sites/${SITE} ];
+  then
+    echo ""
+    echo "/www/${SITE}/sites/${SITE} already exists. "
+    read -p "Press enter to destroy your existing install. (cntl-c cancels)> " dummy
+    echo ""
+    echo "Granting user write permissions to /www/${SITE}/sites/${SITE}"
+    chmod 777 -R /www/${SITE}/sites/${SITE}
+    rm -rf /www/${SITE}/sites/${SITE}
+  fi
+  
+  if [ -d /www/${SITE}/sites/${SITE} ];
+  then
+    echo ""
+    echo "/www/${SITE}/sites/${SITE} already exists. "
+    read -p "Press enter to destroy your existing install. (cntl-c cancels)> " dummy
+    echo ""
+    echo "Granting user write permissions to /www/${SITE}/sites/${SITE}"
+    chmod 777 -R /www/${SITE}/sites/${SITE}
+    rm -rf /www/${SITE}/sites/${SITE}
+  fi
+
+  if [ ! -f /www/${SITE}_pb.txt ];
+  then
+    echo ""
+    echo "#####################################################################################"
+    echo "You do not appear to have a backend PB for Spark."
+    echo "I'll create one for you. You'll be prompted for the root password of the eel-sandbox."
+    echo "In the future, if you'd like to create a brand new PB, just run (from drupal root):"
+    echo "profiles/create_spark_pb.sh"
+    echo "#####################################################################################"
+    echo ""
+    echo "Running /www/${SITE}/profiles/create_spark_pb.sh"
+    cd /www/${SITE}
+    profiles/create_spark_pb.sh \
+      --api_server="${SANDBOX_IP}" \
+      --pb_name="<%= @my_name %>" \
+      --spark_url="http://<%= @my_static_ip %>:8000/${SITE}" \
+      --api_key="wpg" \
+      --latest_pb_file="/www/${SITE}_pb.txt"
+  fi
+
+  # Do the install
+  echo "Running /www/${SITE}/profiles/spark-install.sh"
+  cd /www/${SITE}
+  profiles/spark-install.sh \
+    --sitesdir="${SITE}" \
+    --dburl="mysqli://root:root@localhost:3306/${SITE}" \
+    --sitename="${SITE}" \
+    --adminpass="password" \
+    --adminemail="${SITE}-admin@benevity.com" \
+    --siteemail="${SITE}-site@benevity.com" \
+    --smtphost="localhost" \
+    --smtpport="1080" \
+    --api_base="http://${SANDBOX_IP}:8080" \
+    --api_key="wpg" \
+    --api_receipt_url="http://receipts.trunk" \
+    --api_country="124 840 826 036 372 702" \
+    --timezone_name="America/Edmonton" \
+    --latest_pb_file="/www/${SITE}_pb.txt" \
+    -y -d
+  echo "Finished installed Spark"
+
+  echo ""
+  echo "Symlinking sites/default/[files, settings.php] to sites/${SITE}"
+
+  if [ -h /www/${SITE}/sites/default/settings.php ];
+  then
+    unlink /www/${SITE}/sites/default/settings.php
+  fi
+
+  if [ -h /www/${SITE}/sites/default/files ];
+  then
+    unlink /www/${SITE}/sites/default/files
+  fi
+
+  ln -s /www/${SITE}/sites/${SITE}/settings.php /www/${SITE}/sites/default/settings.php
+  ln -s /www/${SITE}/sites/${SITE}/files /www/${SITE}/sites/default
+
+  echo ""
+  echo "To load your spark with users and data, change into the drupal directory and run:"
+  echo "drush -l ${SITE} -u 1 -y bvauto"
+
+}
+
+function install_secure {
+  SITE=$1
+  SANDBOX_IP=$2
+  echo "coming soon"
+}
+
+function install_causes {
+  SITE=$1
+  SANDBOX_IP=$2
+  echo "coming soon"
+}
+
+function install_atb {
+  SITE=$1
+  SANDBOX_IP=$2
+  echo "coming soon"
+}
+
+echo "Which installer would you like to run?"
+select site in "wpg.trunk" "wpg.eel" "secure.trunk" "secure.eel" "causes.trunk" "causes.eel" "atb.trunk" "atb.eel"; do
+    case $site in
+        wpg.trunk ) install_wpg wpg.trunk $TRUNK_SANDBOX_IP; break;;
+        wpg.eel ) install_wpg wpg.eel $EEL_SANDBOX_IP; break;;
+        secure.trunk) echo install_secure secure.trunk $TRUNK_SANDBOX_IP; break;;
+        secure.eel) echo install_secure secure.eel $TRUNK_SANDBOX_IP; break;;
+        causes.trunk) echo install_causes causes.trunk $TRUNK_SANDBOX_IP; break;;
+        causes.eel) echo install_causes causes.eel $TRUNK_SANDBOX_IP; break;;
+        atb.trunk) echo install_atb atb.trunk $TRUNK_SANDBOX_IP; break;;
+        atb.eel) echo install_atb atb.eel $TRUNK_SANDBOX_IP; break;;
+    esac
+done
+
+
+
+
+
+
