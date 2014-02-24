@@ -163,11 +163,11 @@ select site in "wpg.trunk" "wpg.eel" "secure.trunk" "secure.eel" "causes.trunk" 
         wpg.trunk ) install_wpg wpg.trunk $TRUNK_SANDBOX_IP; break;;
         wpg.eel ) install_wpg wpg.eel $EEL_SANDBOX_IP; break;;
         secure.trunk) install_secure secure.trunk $TRUNK_SANDBOX_IP; break;;
-        secure.eel) install_secure secure.eel $TRUNK_SANDBOX_IP; break;;
+        secure.eel) install_secure secure.eel $EEL_SANDBOX_IP; break;;
         causes.trunk) install_causes causes.trunk $TRUNK_SANDBOX_IP; break;;
-        causes.eel) install_causes causes.eel $TRUNK_SANDBOX_IP; break;;
+        causes.eel) install_causes causes.eel $EEL_SANDBOX_IP; break;;
         atb.trunk) install_atb atb.trunk $TRUNK_SANDBOX_IP; break;;
-        atb.eel) install_atb atb.eel $TRUNK_SANDBOX_IP; break;;
+        atb.eel) install_atb atb.eel $EEL_SANDBOX_IP; break;;
     esac
 done
 
