@@ -103,19 +103,58 @@ function install_wpg {
 function install_secure {
   SITE=$1
   SANDBOX_IP=$2
-  echo "coming soon"
+  echo "Running drush site-install"
+  cd /www/${SITE}
+  drush site-install default \
+    --db-url="mysqli://root:root@localhost:3306/${SITE}" \
+    --account-pass="password" \
+    --account-mail="${SITE}-admin@benevity.com" \
+    --site-name="${SITE}" \
+    --site-mail="${SITE}-site@benevity.com" 
+
+  drush vset date_default_timezone '-25200' -y
+  drush en benevity_secure -y
+  drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
+  drush vset benevity_batch_baseurl "http://${SANDBOX_IP}:8080" -y
+  drush vset benevity_debug 1 -y
+  echo "All done. You can view your new site at http://${SITE}"
 }
 
 function install_causes {
   SITE=$1
   SANDBOX_IP=$2
-  echo "coming soon"
+  echo "Running drush site-install"
+  cd /www/${SITE}
+  drush site-install causes \
+    --db-url="mysqli://root:root@localhost:3306/${SITE}" \
+    --account-pass="password" \
+    --account-mail="${SITE}-admin@benevity.com" \
+    --site-name="${SITE}" \
+    --site-mail="${SITE}-site@benevity.com"
+  drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
+  drush vset benevity_causes_logo_baseurl "http://${SITE}/clogo/150x150" -y
+  drush vset benevity_project_logo_baseurl "http://${SITE}/plogo/150x150" -y
+  drush vset benevity_debug 1 -y
+  echo "All done. You can view your new site at http://${SITE}"
 }
 
 function install_atb {
   SITE=$1
   SANDBOX_IP=$2
-  echo "coming soon"
+  echo "Running drush site-install"
+  cd /www/${SITE}
+  drush site-install default \
+    --db-url="mysqli://root:root@localhost:3306/${SITE}" \
+    --account-pass="password" \
+    --account-mail="${SITE}-admin@benevity.com" \
+    --site-name="${SITE}" \
+    --site-mail="${SITE}-site@benevity.com" 
+
+  drush vset date_default_timezone '-25200' -y
+  drush en benevity_atb -y
+  drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
+  drush vset benevity_debug 1 -y
+  echo "Please visit http://${SITE} and set the Company Code for your ATB PB."
 }
 
 echo "Which installer would you like to run?"
@@ -123,12 +162,12 @@ select site in "wpg.trunk" "wpg.eel" "secure.trunk" "secure.eel" "causes.trunk" 
     case $site in
         wpg.trunk ) install_wpg wpg.trunk $TRUNK_SANDBOX_IP; break;;
         wpg.eel ) install_wpg wpg.eel $EEL_SANDBOX_IP; break;;
-        secure.trunk) echo install_secure secure.trunk $TRUNK_SANDBOX_IP; break;;
-        secure.eel) echo install_secure secure.eel $TRUNK_SANDBOX_IP; break;;
-        causes.trunk) echo install_causes causes.trunk $TRUNK_SANDBOX_IP; break;;
-        causes.eel) echo install_causes causes.eel $TRUNK_SANDBOX_IP; break;;
-        atb.trunk) echo install_atb atb.trunk $TRUNK_SANDBOX_IP; break;;
-        atb.eel) echo install_atb atb.eel $TRUNK_SANDBOX_IP; break;;
+        secure.trunk) install_secure secure.trunk $TRUNK_SANDBOX_IP; break;;
+        secure.eel) install_secure secure.eel $TRUNK_SANDBOX_IP; break;;
+        causes.trunk) install_causes causes.trunk $TRUNK_SANDBOX_IP; break;;
+        causes.eel) install_causes causes.eel $TRUNK_SANDBOX_IP; break;;
+        atb.trunk) install_atb atb.trunk $TRUNK_SANDBOX_IP; break;;
+        atb.eel) install_atb atb.eel $TRUNK_SANDBOX_IP; break;;
     esac
 done
 
