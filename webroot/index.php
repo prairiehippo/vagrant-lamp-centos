@@ -40,6 +40,12 @@
 
 	<section>
 		<ul>
+			<li>Email Catcher: <a href="http://33.33.33.20:1080">http://33.33.33.20:1080</a></li>
+			<li>Log Tailer: <a href="http://33.33.33.20:8080">http://33.33.33.20:8080</a></li>
+		</ul>
+	</section>
+	<section>
+		<ul>
 			<?php foreach($folders as $folder) : ?>
 				<li><a href="/<?php echo $folder ?>"> <?php echo $folder ?></a></li>
 			<?php endforeach; ?>

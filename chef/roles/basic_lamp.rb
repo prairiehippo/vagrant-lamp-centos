@@ -10,5 +10,7 @@ run_list(
   "recipe[nodejs]",
   "recipe[grunt_cookbook::install_grunt_prereq]",
   "recipe[grunt_cookbook::install_grunt_cli]",
-  "recipe[mailcatcher]"
+  "recipe[mailcatcher]",
+  "recipe[python]",
+  "recipe[tailon]"
 )
