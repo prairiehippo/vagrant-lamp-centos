@@ -112,7 +112,7 @@ function install_secure {
     --site-name="${SITE}" \
     --site-mail="${SITE}-site@benevity.com" 
 
-  drush vset date_default_timezone '-25200' -y
+  drush vset date_default_timezone '0' -y
   drush en benevity_secure -y
   drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
   drush vset benevity_batch_baseurl "http://${SANDBOX_IP}:8080" -y
@@ -150,7 +150,7 @@ function install_atb {
     --site-name="${SITE}" \
     --site-mail="${SITE}-site@benevity.com" 
 
-  drush vset date_default_timezone '-25200' -y
+  drush vset date_default_timezone '0' -y
   drush en benevity_atb -y
   drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
   drush vset benevity_debug 1 -y
