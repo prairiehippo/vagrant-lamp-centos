@@ -12,5 +12,6 @@ run_list(
   "recipe[grunt_cookbook::install_grunt_cli]",
   "recipe[mailcatcher]",
   "recipe[python]",
-  "recipe[tailon]"
+  "recipe[tailon]",
+  "recipe[chive]"
 )
