@@ -1,6 +1,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 www_root = '/www'
+server_ip = "33.33.33.20"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "CentOS65-x64"
@@ -14,9 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # setup networking
   # Use private networking to take advantage of NFS for sharing folder.  This is dramatically faster then
   # using standard virtual box file sharing.
-  config.vm.network :private_network, ip: "33.33.33.20"
+  config.vm.network :private_network, ip: server_ip
   config.ssh.forward_agent = true
   config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
 
   # sync the folder
   config.vm.synced_folder "./webroot", www_root, :nfs => true
@@ -34,6 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # set up some configuration variables for chef
     chef.json.merge!({
       :www_root => www_root,
+      :server_ip => server_ip,
 
       :mysql => {
         :server_root_password => 'root',

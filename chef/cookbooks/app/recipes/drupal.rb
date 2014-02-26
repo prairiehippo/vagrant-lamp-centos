@@ -11,6 +11,13 @@ package "php-xml" do
 	action :install
 end
 
+# install the xdebug pecl
+php_pear "xdebug" do
+  # Specify that xdebug.so must be loaded as a zend extension
+  zend_extensions ['xdebug.so']
+  action :install
+end
+
 # install custom php ini overrides file
 template "#{node['php']['ext_conf_dir']}/php.ini" do
   source "php_custom.ini.erb"
