@@ -95,9 +95,11 @@ function install_wpg {
   ln -s /www/${SITE}/sites/${SITE}/files /www/${SITE}/sites/default
 
   echo ""
-  echo "To load your spark with users and data, change into the drupal directory and run:"
-  echo "drush -l ${SITE} -u 1 -y bvauto"
-
+  echo "Site installed."
+  echo "If it looks like all went well, then you can load your site with test users and data."
+  echo "Press enter to load test data with: drush -l ${SITE} -u 1 -y bvauto (cntl-c cancels)"
+  read -p "drush -l ${SITE} -u 1 -y bvauto > " dummy
+  drush -l ${SITE} -u 1 -y bvauto
 }
 
 function install_secure {
