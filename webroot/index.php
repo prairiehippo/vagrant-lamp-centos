@@ -40,9 +40,10 @@
 
 	<section>
 		<ul>
-			<li>Email Catcher: <a href="http://33.33.33.20:1080">http://33.33.33.20:1080</a></li>
-			<li>Log Tailer: <a href="http://33.33.33.20:8080">http://33.33.33.20:8080</a></li>
+			<li>MailCatcher: <a href="http://33.33.33.20:1080">http://33.33.33.20:1080</a></li>
+			<li>Tailon: <a href="http://33.33.33.20:8080">http://33.33.33.20:8080</a></li>
 			<li>Chive: <a href="http://33.33.33.20/chive">http://33.33.33.20/chive</a></li>
+			<li>APC Stats: <a hrep="http://33.33.33.20/apc"></a></li>
 		</ul>
 	</section>
 	<section>

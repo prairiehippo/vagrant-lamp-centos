@@ -31,6 +31,15 @@ php_pear "imagick" do
   version '3.1.2'
 end
 
+# install apc pecl with directives
+package "pcre-devel" do
+  action :install
+end
+php_pear "apc" do
+  action :install
+  directives(:shm_size => '128M', :enable_cli => 1)
+end
+
 # reboot apache to ensure changes are recognized
 service 'apache2' do
   action :restart
