@@ -9,8 +9,8 @@ depends 'build-essential'
 depends 'xml'
 depends 'mysql'
 depends 'yum-epel'
-depends 'windows'
-depends 'iis'
+# depends 'windows'
+# depends 'iis'
 
 %w{ debian ubuntu centos redhat fedora scientific amazon windows }.each do |os|
   supports os
