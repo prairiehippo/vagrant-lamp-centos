@@ -1,6 +1,6 @@
 memory_limit=256M
 max_execution_time=120
-sendmail_path = /usr/bin/env catchmail
+sendmail_path="/usr/bin/env catchmail"
 
 xdebug.default_enable=1
 xdebug.remote_enable=1
@@ -8,5 +8,7 @@ xdebug.remote_handler=dbgp
 xdebug.remote_autostart=0
 xdebug.remote_log="/var/log/xdebug/xdebug.log"
 
-xdebug.remote_host=10.0.2.2 ; IDE-Environments IP, from vagrant box.
+xdebug.remote_host=<% @host_ip %> ; IDE-Environments IP, from vagrant box.
 xdebug.idekey = "sublime.xdebug"
+
+date.timezone=America/Edmonton

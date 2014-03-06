@@ -20,6 +20,7 @@ end
 
 # install custom php ini overrides file
 template "#{node['php']['ext_conf_dir']}/php.ini" do
+  variables( :host_ip => node[:network][:interfaces][:eth1][:addresses].detect{|k,v| v[:family] == "inet" }.first )
   source "php_custom.ini.erb"
   owner "root"
   group "root"
