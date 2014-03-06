@@ -12,6 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--memory", 2048]
   end
 
+  config.vm.hostname = "centos65.localhost"
+
   # setup networking
   # Use private networking to take advantage of NFS for sharing folder.  This is dramatically faster then
   # using standard virtual box file sharing.
