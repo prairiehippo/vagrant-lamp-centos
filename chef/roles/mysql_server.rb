@@ -9,6 +9,7 @@ default_attributes(
     :tunable => {
       :key_buffer => "384M",
       :table_cache => "4096",
+      :wait_timeout => "28800"
     }
   }
 )

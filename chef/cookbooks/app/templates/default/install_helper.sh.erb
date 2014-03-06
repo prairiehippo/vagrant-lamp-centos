@@ -133,10 +133,13 @@ function install_causes {
     --account-mail="${SITE}-admin@benevity.com" \
     --site-name="${SITE}" \
     --site-mail="${SITE}-site@benevity.com"
+  drush en mailsystem -y
+  drush en mimemail -y
   drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
   drush vset benevity_causes_logo_baseurl "http://${SITE}/clogo/150x150" -y
   drush vset benevity_project_logo_baseurl "http://${SITE}/plogo/150x150" -y
   drush vset benevity_debug 1 -y
+  drush cc all
   echo "All done. You can view your new site at http://${SITE}"
 }
 
@@ -156,6 +159,8 @@ function install_atb {
   drush en benevity_atb -y
   drush vset benevity_api_baseurl "http://${SANDBOX_IP}:8080" -y
   drush vset benevity_debug 1 -y
+  drush -u 1 fr benevity_atb benevity_gifts -y
+  drush cc all
   echo "Please visit http://${SITE} and set the Company Code for your ATB PB."
 }
 
