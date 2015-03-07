@@ -4,8 +4,7 @@ www_root = '/www'
 server_ip = "33.33.33.20"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "CentOS65-x64"
-  config.vm.box_url = "http://192.168.2.81/vagrant_boxes/CentOS65-x64.box"
+  config.vm.box = "chef/centos-6.5"
 
   config.vm.provider :virtualbox do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
