@@ -1,0 +1,26 @@
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+  name: bash_aliases
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+
+suites:
+- name: default
+  run_list:
+    - recipe[minitest-handler]
+    - recipe[bash::aliases]
+    - recipe[bash-test::aliases]
+  attributes:
+    bash_aliases:
+      users:
+        matt:
+          l: ls -lha
+          gst: git status
+          has_double_quotes: '"this will have to be escaped"'
+          has_single_quotes: "'this will have to be escaped'"

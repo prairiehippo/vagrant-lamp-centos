@@ -1,0 +1,10 @@
+<VirtualHost *>
+  DocumentRoot <%= node['apache']['docroot_dir'] %>
+  ServerAlias 33.33.33.20
+  <Directory <%= node['apache']['docroot_dir'] %>/>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+</VirtualHost>

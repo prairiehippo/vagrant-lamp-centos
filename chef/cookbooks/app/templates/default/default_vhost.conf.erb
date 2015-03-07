@@ -1,0 +1,50 @@
+<VirtualHost *:80>
+
+  DocumentRoot <%= @params[:docroot] %>
+  RewriteEngine On
+
+  <Directory <%= @params[:docroot] %>>
+    Options FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride None
+  </Directory>
+
+  <Location /server-status>
+    SetHandler server-status
+
+    Order Allow,Deny
+    Allow from all
+  </Location>
+
+  LogLevel info
+  ErrorLog <%= node[:apache][:log_dir] %>/error.log
+  CustomLog <%= node[:apache][:log_dir] %>/access.log combined
+
+  RewriteEngine On
+  RewriteLog <%= node[:apache][:log_dir] %>/rewrite.log
+  # level 0 => Do not log rewrite
+  RewriteLogLevel 0
+
+  #
+  # This configuration file enables the default "Welcome"
+  # page if there is no default index page present for
+  # the root URL.  To disable the Welcome page, comment
+  # out all the lines below.
+  #
+  <LocationMatch "^/+$">
+    Options -Indexes
+    ErrorDocument 403 /error/noindex.html
+  </LocationMatch>
+
+  # TODO - this belongs in the chive cookbook (just unsure how to do it)
+  Alias /chive /opt/chive
+
+  # APC-Stats
+  Alias /apc /usr/share/pear/apc.php
+</VirtualHost>

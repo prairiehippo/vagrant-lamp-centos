@@ -1,0 +1,6 @@
+/files/
+/webroot/*
+!/webroot
+!/webroot/index.*
+.vagrant
+.DS_Store
