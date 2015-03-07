@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8000
 
   # sync the folder
-  config.vm.synced_folder "./webroot", www_root, :nfs => true
+  config.vm.synced_folder "www", "/www"
 
   config.vm.provision :chef_solo do |chef|
 

@@ -19,6 +19,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+name             "composer"
 maintainer       "Robert Allen"
 maintainer_email "zircote@gmail.com"
 license          "Apache 2.0"

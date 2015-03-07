@@ -26,13 +26,6 @@ def setup_site(site)
     end
 end
 
-# Check the data bags
-sites_bag = data_bag('sites')
-sites_bag.each do |site_name|
-  site = data_bag_item('sites', site_name)
-  setup_site(site)
-end
-
 # Check the chef configuration
 if node["sites"]
   node["sites"].each do |index, site|
