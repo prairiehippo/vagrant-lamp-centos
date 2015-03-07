@@ -27,7 +27,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # setup chef information paths
     chef.cookbooks_path = ["chef/cookbooks/lib-cookbooks", "chef/cookbooks"]
-    chef.data_bags_path = ["chef/databags"]
     chef.roles_path = "chef/roles"
 
     # install roles
@@ -69,54 +68,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
       #default site setup
       :sites => {
-        :wpg_trunk => {
-          :hostname => "wpg.trunk",
-          :database_name => "wpg.trunk",
-          :port => 80
-        },
-        :wpg_eel => {
-          :hostname => "wpg.eel",
-          :database_name => "wpg.eel",
-          :port => 80
-        },
-        :causes_trunk => {
-          :hostname => "causes.trunk",
-          :database_name => "causes.trunk",
-          :port => 80
-        },
-        :causes_eel => {
-          :hostname => "causes.eel",
-          :database_name => "causes.eel",
-          :port => 80
-        },
-        :secure_trunk => {
-          :hostname => "secure.trunk",
-          :database_name => "secure.trunk",
-          :port => 80
-        },
-        :secure_eel => {
-          :hostname => "secure.eel",
-          :database_name => "secure.eel",
-          :port => 80
-        },
-        :atb_trunk => {
-          :hostname => "atb.trunk",
-          :database_name => "atb.trunk",
-          :port => 80
-        },
-        :atb_eel => {
-          :hostname => "atb.eel",
-          :database_name => "atb.eel",
-          :port => 80
-        },
-        :receipts_trunk => {
-          :hostname => "receipts.trunk",
-          :database_name => "receipts.trunk",
-          :port => 80
-        },
-        :receipts_eel => {
-          :hostname => "receipts.eel",
-          :database_name => "receipts.eel",
+        :local => {
+          :hostname => "local.dev",
+          :database_name => "local.dev",
           :port => 80
         }
       }
